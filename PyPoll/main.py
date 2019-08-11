@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 import os
 import csv
 
 
-# In[ ]:
+# In[2]:
 
 
 os.path.join("Resources","election_data.csv")
 
 
-# In[ ]:
+# In[3]:
 
 
 csvpath = os.path.join("Resources","election_data.csv")
@@ -52,7 +52,7 @@ with open(csvpath, 'r') as csvfile:
         print("Total Votes:" + " " + str(Voter))
 
 
-# In[ ]:
+# In[6]:
 
 
 with open(csvpath,"r") as csvfile:
@@ -61,5 +61,5 @@ with open(csvpath,"r") as csvfile:
     Candidate_index=header.index("Candidate")
     for row in csvreader:
         Candidate=row[Candidate_index]
-        print(Candidate)
+        #print(Candidate)
 
