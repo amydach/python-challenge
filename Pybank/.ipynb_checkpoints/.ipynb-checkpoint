@@ -1,0 +1,238 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import os\n",
+    "import csv"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'PyBank\\\\Resources\\\\budget_data.csv'"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "os.path.join(\"PyBank\",\"Resources\",\"budget_data.csv\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#pybudget = os.path.join(\"PyBank\",\"Resources\",\"budget_data.csv\")\n",
+    "csvpath = os.path.join(\"PyBank\",\"Resources\",\"budget_data.csv\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "with open(csvpath, 'r') as file_handler:\n",
+    "     lines = file_handler.read()\n",
+    "     #print(lines)\n",
+    "#     print(type(lines))\n",
+    "#     print(file_handler)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Financial Analysis\n",
+      "----------------------------\n",
+      "Total Months: 86\n",
+      "Total : $38382578.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "Total_Months=0\n",
+    "Total = 0\n",
+    "Avg_Change = 0\n",
+    "PL_Total = 0\n",
+    "float_Profits_Losses = 0\n",
+    "\n",
+    "with open(csvpath,\"r\") as csvfile:\n",
+    "   csvreader=csv.reader(csvfile,delimiter=\",\")\n",
+    "   header=next(csvreader)\n",
+    "   #columns=len(csvreader[0])\n",
+    "   Date_index=header.index(\"Date\")\n",
+    "   for row in csvreader:\n",
+    "       float_Profits_Losses= float(row[1])\n",
+    "       PL_Total += float_Profits_Losses\n",
+    "       Total += float_Profits_Losses\n",
+    "       Total_Months += 1\n",
+    "       #Avg_Change = float_Profits_Losses-(PL_Total-float_Profits_Losses)\n",
+    "   print(\"Financial Analysis\")\n",
+    "   print(\"----------------------------\")\n",
+    "   print(\"Total Months:\" + \" \" + str(Total_Months))\n",
+    "   print(\"Total :\" + \" $\" + str(Total))\n",
+    "   #print(\"Average Change :\" + \" $\" + str(Avg_Change))    "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Jan-2010 867884.0 867884.0\n",
+      "Feb-2010 984655.0 1852539.0\n",
+      "Mar-2010 322013.0 2174552.0\n",
+      "Apr-2010 -69417.0 2105135.0\n",
+      "May-2010 310503.0 2415638.0\n",
+      "Jun-2010 522857.0 2938495.0\n",
+      "Jul-2010 1033096.0 3971591.0\n",
+      "Aug-2010 604885.0 4576476.0\n",
+      "Sep-2010 -216386.0 4360090.0\n",
+      "Oct-2010 477532.0 4837622.0\n",
+      "Nov-2010 893810.0 5731432.0\n",
+      "Dec-2010 -80353.0 5651079.0\n",
+      "Jan-2011 779806.0 6430885.0\n",
+      "Feb-2011 -335203.0 6095682.0\n",
+      "Mar-2011 697845.0 6793527.0\n",
+      "Apr-2011 793163.0 7586690.0\n",
+      "May-2011 485070.0 8071760.0\n",
+      "Jun-2011 584122.0 8655882.0\n",
+      "Jul-2011 62729.0 8718611.0\n",
+      "Aug-2011 668179.0 9386790.0\n",
+      "Sep-2011 899906.0 10286696.0\n",
+      "Oct-2011 834719.0 11121415.0\n",
+      "Nov-2011 132003.0 11253418.0\n",
+      "Dec-2011 309978.0 11563396.0\n",
+      "Jan-2012 -755566.0 10807830.0\n",
+      "Feb-2012 1170593.0 11978423.0\n",
+      "Mar-2012 252788.0 12231211.0\n",
+      "Apr-2012 1151518.0 13382729.0\n",
+      "May-2012 817256.0 14199985.0\n",
+      "Jun-2012 570757.0 14770742.0\n",
+      "Jul-2012 506702.0 15277444.0\n",
+      "Aug-2012 -1022534.0 14254910.0\n",
+      "Sep-2012 475062.0 14729972.0\n",
+      "Oct-2012 779976.0 15509948.0\n",
+      "Nov-2012 144175.0 15654123.0\n",
+      "Dec-2012 542494.0 16196617.0\n",
+      "Jan-2013 359333.0 16555950.0\n",
+      "Feb-2013 321469.0 16877419.0\n",
+      "Mar-2013 67780.0 16945199.0\n",
+      "Apr-2013 471435.0 17416634.0\n",
+      "May-2013 565603.0 17982237.0\n",
+      "Jun-2013 872480.0 18854717.0\n",
+      "Jul-2013 789480.0 19644197.0\n",
+      "Aug-2013 999942.0 20644139.0\n",
+      "Sep-2013 -1196225.0 19447914.0\n",
+      "Oct-2013 268997.0 19716911.0\n",
+      "Nov-2013 -687986.0 19028925.0\n",
+      "Dec-2013 1150461.0 20179386.0\n",
+      "Jan-2014 682458.0 20861844.0\n",
+      "Feb-2014 617856.0 21479700.0\n",
+      "Mar-2014 824098.0 22303798.0\n",
+      "Apr-2014 581943.0 22885741.0\n",
+      "May-2014 132864.0 23018605.0\n",
+      "Jun-2014 448062.0 23466667.0\n",
+      "Jul-2014 689161.0 24155828.0\n",
+      "Aug-2014 800701.0 24956529.0\n",
+      "Sep-2014 1166643.0 26123172.0\n",
+      "Oct-2014 947333.0 27070505.0\n",
+      "Nov-2014 578668.0 27649173.0\n",
+      "Dec-2014 988505.0 28637678.0\n",
+      "Jan-2015 1139715.0 29777393.0\n",
+      "Feb-2015 1029471.0 30806864.0\n",
+      "Mar-2015 687533.0 31494397.0\n",
+      "Apr-2015 -524626.0 30969771.0\n",
+      "May-2015 158620.0 31128391.0\n",
+      "Jun-2015 87795.0 31216186.0\n",
+      "Jul-2015 423389.0 31639575.0\n",
+      "Aug-2015 840723.0 32480298.0\n",
+      "Sep-2015 568529.0 33048827.0\n",
+      "Oct-2015 332067.0 33380894.0\n",
+      "Nov-2015 989499.0 34370393.0\n",
+      "Dec-2015 778237.0 35148630.0\n",
+      "Jan-2016 650000.0 35798630.0\n",
+      "Feb-2016 -1100387.0 34698243.0\n",
+      "Mar-2016 -174946.0 34523297.0\n",
+      "Apr-2016 757143.0 35280440.0\n",
+      "May-2016 445709.0 35726149.0\n",
+      "Jun-2016 712961.0 36439110.0\n",
+      "Jul-2016 -1163797.0 35275313.0\n",
+      "Aug-2016 569899.0 35845212.0\n",
+      "Sep-2016 768450.0 36613662.0\n",
+      "Oct-2016 102685.0 36716347.0\n",
+      "Nov-2016 795914.0 37512261.0\n",
+      "Dec-2016 60988.0 37573249.0\n",
+      "Jan-2017 138230.0 37711479.0\n",
+      "Feb-2017 671099.0 38382578.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "PL_Total = 0\n",
+    "Sum_Change = 0\n",
+    "Avg_Change = 0\n",
+    "#float_Profits_Losses = 0\n",
+    "\n",
+    "\n",
+    "\n",
+    "with open(csvpath,\"r\") as csvfile:\n",
+    "   csvreader = csv.reader(csvfile, delimiter=',')\n",
+    "   header=next(csvreader)\n",
+    "   Date_index=header.index(\"Date\")\n",
+    "   for row in csvreader:\n",
+    "       budget_date=row[0]\n",
+    "       float_Profits_Losses= float(row[1])\n",
+    "       PL_Total += float_Profits_Losses\n",
+    "       #Sum_Change = PL_Total-float_Profits_Losses\n",
+    "       #Avg_Change = float_Profits_Losses-(PL_Total-float_Profits_Losses)\n",
+    "       print(budget_date, float_Profits_Losses, PL_Total)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Conda [PythonData]",
+   "language": "python",
+   "name": "pythondata"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
