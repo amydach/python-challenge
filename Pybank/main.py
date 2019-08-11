@@ -21,7 +21,7 @@ os.path.join("Resources","budget_data.csv")
 csvpath = os.path.join("Resources","budget_data.csv")
 
 
-# In[5]:
+# In[4]:
 
 
 with open(csvpath, 'r') as file_handler:
@@ -31,14 +31,15 @@ with open(csvpath, 'r') as file_handler:
 #     print(file_handler)
 
 
-# In[6]:
+# In[5]:
 
 
-Total_Months=0
+previous_profit=0
+Total_Month = 0
 Total = 0
-Avg_Change = 0
-PL_Total = 0
-float_Profits_Losses = 0
+monthly_changes=[]
+total_months=[]
+
 
 with open(csvpath,"r") as csvfile:
    csvreader=csv.reader(csvfile,delimiter=",")
@@ -47,36 +48,25 @@ with open(csvpath,"r") as csvfile:
    Date_index=header.index("Date")
    for row in csvreader:
        float_Profits_Losses= float(row[1])
-       PL_Total += float_Profits_Losses
        Total += float_Profits_Losses
-       Total_Months += 1
-       #Avg_Change = float_Profits_Losses-(PL_Total-float_Profits_Losses)
+       Total_Month += 1
+       total_months.append(row[0])
+       current_profit= float(row[1])
+       monthly_change=current_profit - previous_profit
+       monthly_changes.append(monthly_change)
+       previous_profit=current_profit
+   monthly_changes = monthly_changes[1:]
+   #average=sum(monthly_changes)/(total_months - 1)
+   increase=max(monthly_changes)
+   decrease=min(monthly_changes)
+   dateincrease=monthly_changes.index(increase)
+   datedecrease=monthly_changes.index(decrease)
+   
+       
    print("Financial Analysis")
    print("----------------------------")
-   print("Total Months:" + " " + str(Total_Months))
-   print("Total :" + " $" + str(Total))
-   #print("Average Change :" + " $" + str(Avg_Change))    
-
-
-# In[7]:
-
-
-PL_Total = 0
-Sum_Change = 0
-Avg_Change = 0
-#float_Profits_Losses = 0
-
-
-
-with open(csvpath,"r") as csvfile:
-   csvreader = csv.reader(csvfile, delimiter=',')
-   header=next(csvreader)
-   Date_index=header.index("Date")
-   for row in csvreader:
-       budget_date=row[0]
-       float_Profits_Losses= float(row[1])
-       PL_Total += float_Profits_Losses
-       #Sum_Change = PL_Total-float_Profits_Losses
-       #Avg_Change = float_Profits_Losses-(PL_Total-float_Profits_Losses)
-       #print(budget_date, float_Profits_Losses, PL_Total)
+   print("Total Months:" + " " + str(Total_Month))
+   print("Average Change: ")# + "$" + str(average))
+   print("Greatest Increase: " + str(total_months[dateincrease + 1]) + " $" + str(increase))
+   print("Greatest Decrease: " + str(total_months[datedecrease + 1]) + " $" + str(decrease)) 
 
